@@ -1,3 +1,4 @@
+using DG.Tweening.Core.Easing;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,14 +9,24 @@ public class BettingManager : MonoBehaviour
 
     static BettingManager instance;
 
-    public float currentBet = 1f;
-    public float maxBet = 1000000f;
-    public float minBet = 10f;
-    public float TotalCredits = 10000000f;
+    public int currentBet = 1;
+    //public int maxBet = 1000000;
+    //public int minBet = 10;
+    public int totalCredits = 10000000;
     public Text betText;
     public Text totalCreditsText;
 
-
+    public static BettingManager Instance
+    {
+        get
+        {
+            if (null == instance)
+            {
+                return null;
+            }
+            return instance;
+        }
+    }
 
     private void Awake()
     {
@@ -32,43 +43,116 @@ public class BettingManager : MonoBehaviour
 
     void Start()
     {
-        currentBet = minBet;
-        TotalCredits = 10000000f;
+        currentBet = 10;
+        totalCredits = 10000000;
         UpdateUI();
 
     }
 
-    void Update()
-    {
-        
-    }
     public void UpdateUI()
     {
-        betText.text = $"{currentBet} Credit";
-        totalCreditsText.text = $"{TotalCredits} Credit";
+        betText.text = $"{currentBet}";
+        totalCreditsText.text = $"{totalCredits}";
     }
     public void IncreaseBet()
     {
-        if (currentBet < maxBet)
+        switch (currentBet)
         {
-            currentBet *= 2f;
-            if (currentBet > TotalCredits)
-            {
-                currentBet = TotalCredits;
-            }
-            UpdateUI();
+            case 10:
+                if(totalCredits>50) currentBet = 50;
+                break;
+            case 50:
+                if (totalCredits > 100) currentBet = 100;
+                break;
+            case 100:
+                if (totalCredits > 500) currentBet = 500;
+                break;
+            case 500:
+                if (totalCredits > 1000) currentBet = 1000;
+                break;
+            case 1000:
+                if (totalCredits > 5000) currentBet = 5000;
+                break;
+            case 5000:
+                if (totalCredits > 10000) currentBet = 10000;
+                break;
+            case 10000:
+                if (totalCredits > 50000) currentBet = 50000;
+                break;
+            case 50000:
+                if (totalCredits > 100000) currentBet = 100000;
+                break;
+            case 100000:
+                if (totalCredits > 500000) currentBet = 500000;
+                break;
+            case 500000:
+                if (totalCredits > 1000000) currentBet = 1000000;
+                break;
         }
+
+        UpdateUI();
     }
     public void DecreaseBet()
     {
-        if (currentBet > minBet)
+        
+        switch (currentBet)
         {
-            currentBet /= 2f;
-            if (currentBet < minBet)
-            {
-                currentBet = minBet;
-            }
-            UpdateUI();
+            case 1000000:
+                currentBet = 500000;
+                break;
+            case 500000:
+                currentBet = 100000;
+                break;
+            case 100000:
+                currentBet = 50000;
+                break;
+            case 50000:
+                currentBet = 10000;
+                break;
+            case 10000:
+                currentBet = 5000;
+                break;
+            case 5000:
+                currentBet = 1000;
+                break;
+            case 1000:
+                currentBet = 500;
+                break;
+            case 500:
+                currentBet = 100;
+                break;
+            case 100:
+                currentBet = 50;
+                break;
+            case 50:
+                currentBet = 10;
+                break;
+
         }
+        UpdateUI();
+    }
+    public void Spin()
+    {
+        totalCredits -= currentBet;
+        if (totalCredits < 0)
+        {
+            totalCredits = 0;
+        }
+        if (totalCredits < currentBet)
+        {
+            while (currentBet > totalCredits)
+            {
+                DecreaseBet();
+                if (currentBet <= 10)
+                {
+                    break;
+                }
+            }
+        }
+        UpdateUI();
+    }
+    public bool IsRequireCredit()
+    {
+        return totalCredits >= currentBet;
     }
 }

@@ -328,7 +328,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 108786770}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 610f7799f814b8b4cad2ac8119aa3c89, type: 3}
+  m_Script: {fileID: 11500000, guid: 64c498a68e8d0d44ea0c005b442ebbb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   samples:
@@ -1539,7 +1539,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_TargetDisplay: 0
 --- !u!224 &743977153
 RectTransform:
@@ -2263,6 +2263,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1427515165}
   m_CullTransparentMesh: 1
+--- !u!1 &1495814982
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1495814984}
+  - component: {fileID: 1495814983}
+  m_Layer: 0
+  m_Name: BettingManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1495814983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495814982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 634bcd68b563fe2489d9351f46ba5a7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentBet: 1
+  totalCredits: 10000000
+  betText: {fileID: 906336983}
+  totalCreditsText: {fileID: 787076016}
+--- !u!4 &1495814984
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495814982}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -231.51634, y: 538.1683, z: -5.4291906}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1507820982
 GameObject:
   m_ObjectHideFlags: 0
@@ -2610,7 +2658,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1784294179}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1495814983}
+        m_TargetAssemblyTypeName: BettingManager, Assembly-CSharp
+        m_MethodName: DecreaseBet
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1784294179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2803,7 +2863,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2023767407}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1495814983}
+        m_TargetAssemblyTypeName: BettingManager, Assembly-CSharp
+        m_MethodName: IncreaseBet
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2023767407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2924,7 +2996,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2053837538}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 108786772}
+        m_TargetAssemblyTypeName: TestSlotDirrector, Assembly-CSharp
+        m_MethodName: SlotSpin
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2053837538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3047,3 +3131,4 @@ SceneRoots:
   - {fileID: 327234506}
   - {fileID: 444872886}
   - {fileID: 743977153}
+  - {fileID: 1495814984}
